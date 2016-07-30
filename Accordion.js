@@ -32,6 +32,14 @@ class Accordion extends Component {
     }
   }
 
+  border() {
+    if(this.props.border){
+      return 'true';
+    } else {
+      return 'nah';
+    }
+  }
+
   render() {
 
     let rotate1 = !this.state.open ? 'translate(75%, -50%) rotate(45deg)' : 'translate(0%, -50%) rotate(-45deg)';
@@ -54,12 +62,12 @@ class Accordion extends Component {
       },
       button: {
         position: 'absolute',
-        top:'-7px',
+        top:'-2px',
         right: 0,
         margin: 0,
         padding: 0,
         height: '2.5em',
-        width: '3em',
+        width: '14px',
         outline: 0,
         border: 0,
         background: 'none',
@@ -118,12 +126,12 @@ class Accordion extends Component {
           <span style={styles.buttonLine1} />
           <span style={styles.buttonLine2} />
         </button>
-        <div className='header' style={styles.sectionHead} onClick={this.handleClick}>
+        <div className='header' style={[styles.sectionHead, this.props.titleStyle ]} onClick={this.handleClick}>
           {this.props.title}
         </div>
         <div className='contentWrap' style={styles.contentWrap}>
           <div ref='content' style={styles.content}>
-            {this.props.children} - {this.state.wrapHeight}
+            {this.props.children}
           </div>
         </div>
       </div>
