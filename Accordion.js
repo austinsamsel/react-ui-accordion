@@ -58,8 +58,7 @@ class Accordion extends Component {
     let heightSwap = !this.state.open ? '9px' : '14px';
 
     let wrapSize = !this.state.open ? '0px' : this.state.wrapHeight;
-
-    let wrapTransition = !this.state.open ? 'max-height 0.5s ease-in' : 'max-height 0.5s ease-in'    
+ 
     let opacity = !this.state.open ? '0.0' : '1.0';
 
     const styles = {
@@ -133,7 +132,7 @@ class Accordion extends Component {
           <span style={styles.buttonLine2} />
         </button>
         <div className='header' style={[styles.sectionHead, this.props.titleStyle ]} onClick={this.handleClick}>
-          {this.props.title} - {this.state.wrapHeight}
+          {this.props.title}
         </div>
         <div className='contentWrap' style={styles.contentWrap}>
           <div ref='content' style={styles.content}>

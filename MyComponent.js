@@ -3,6 +3,7 @@ import Radium from 'radium';
 import Accordion from './Accordion';
 import ArrowIcon from './ArrowIcon';
 import GifList from './GifList';
+import GifItem from './GifItem';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -11,13 +12,22 @@ class MyComponent extends Component {
   constructor() {
     super()
     this.state = {
-      trending: []
+      trending: [],
+      random: null,
+      goats: [],
+      translate: null,
     }
     this.loadTrending = this.loadTrending.bind(this);
+    this.loadRandom = this.loadRandom.bind(this);
+    this.loadGoats = this.loadGoats.bind(this);
+    this.loadTranslate = this.loadTranslate.bind(this);
   } 
  
   componentDidMount() {
     this.loadTrending();
+    this.loadRandom();
+    this.loadGoats();
+    this.loadTranslate();
   }
 
   loadTrending() {  
@@ -29,15 +39,59 @@ class MyComponent extends Component {
       return response.json();
      })
      .then(gifs => {
-       console.log(gifs.data);
-       this.setState({trending: gifs.data})
+       // console.log(gifs.data);
+       const someGifs = gifs.data.slice(1,4);
+       this.setState({trending: someGifs})
+    }); 
+  }
+
+  loadRandom() { 
+    fetch('//api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag')
+     .then(function(response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+     })
+     .then(gifs => {
+       // console.log(gifs);
+       this.setState({random: gifs.data.image_original_url})
+    }); 
+  }
+
+  loadGoats() { 
+    fetch('//api.giphy.com/v1/gifs/search?q=baby+goats&api_key=dc6zaTOxFJmzC')
+     .then(function(response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+     })
+     .then(gifs => {
+       // console.log(gifs);
+       const someGifs = gifs.data.slice(1,4);
+       this.setState({goats: someGifs})
+    }); 
+  }
+
+  loadTranslate() { 
+    fetch('//api.giphy.com/v1/gifs/translate?s=rad&api_key=dc6zaTOxFJmzC')
+     .then(function(response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+     })
+     .then(gifs => {
+       console.log(gifs); 
+       this.setState({translate: gifs.data.images.original.url})
     }); 
   }
 
   titleBar(){
     return(
       <div>
-        Trending {/* <ArrowIcon />*/}
+        Top 3 Trending GIFs {/* <ArrowIcon />*/}
       </div>
     );
   }
@@ -48,7 +102,8 @@ class MyComponent extends Component {
       wrap : {
         fontFamily: '"avenir next", avenir, sans-serif',
         padding: '2rem',
-        maxWidth: '600px'
+        maxWidth: '600px',
+        margin: '0 auto',
       },
       item : {
         padding:'0.5rem 0',
@@ -70,6 +125,7 @@ class MyComponent extends Component {
     return (
       <div style={s.wrap}>
         <h1 style={{color:'mediumpurple'}}>React UI Accordion</h1>
+
         <div style={s.item}>
           <Accordion title={this.titleBar()} titleStyle={s.title} >
             <div style={s.content}>
@@ -77,17 +133,36 @@ class MyComponent extends Component {
             </div>
           </ Accordion>
         </div>
+
         <div style={s.item}>
-          <Accordion title="another one" titleStyle={s.title} >
+          <Accordion title="Totally Random GIF" titleStyle={s.title} >
             <div style={s.content}>
-            Yolo ipsum dolor sit amet, consectetur adipiscing elit. Ut ac suscipit leo. Carpe diem vulputate est nec commodo rutrum. Pellentesque mattis convallis nisi eu and I ain’t stoppin until the swear jar’s full. Ut rhoncus velit at mauris interdum, fringilla dictum neque rutrum. Curabitur mattis odio at erat viverra lobortis. Poppin’ bottles on the ice, tristique suscipit mauris elementum tempus. Quisque ut felis vitae elit tempor interdum viverra a est. Drop it like it’s hot, at pretium quam. In nec scelerisque purus. Nam dignissim lacus ipsum, a ullamcorper nulla pretium non. Aliquam sed enim faucibus, pulvinar felis at, vulputate augue. Ten, ten, twenties on them fifties, trick, at tempus libero fermentum id. Vivamus ut nisi dignissim, condimentum urna vel, dictum massa. Donec justo yolo, rutrum vitae dui in, dapibus tempor tellus. I do it big. Fusce ut sagittis mi.
-
-  Donec accumsan consectetur faucibus. YOLO, you only live once. Donec eget semper eros. Vestibulum lobortis eros vel elementum suscipit. Nunc tempus lectus elit, et faucibus ligula dignissim nec. Phasellus in turpis porta, laoreet sapien vitae, auctor ante.  Your chick, she so thirsty, nec consequat dui imperdiet eget. In quis rhoncus sem, eu eleifend purus. Etiam sodales turpis volutpat ultricies blandit. #Swaggityswag Donec pretium tincidunt mi, id semper dolor commodo eget.
-
-  Don’t trust anyone, cause you only live once. Aliquam imperdiet, ligula vehicula sodales lobortis, dui arcu ultricies libero, vitae tempor eros libero sed neque. Pop a molly, I’m sweatin’, consequat feugiat eros.  How you like your eggs, fried or fertilized? Mi ullamcorper molestie vehicula, nulla est hendrerit ante, eget tempor augue felis ut velit. Sed ut tortor nibh. Phasellus et erat a nisl molestie tempor et at mi. I’m ballin’ hard, I need a jersey on, sollicitudin eget auctor quis, aliquet vitae nullai.
+			  <GifItem> 
+                {this.state.random}
+              </ GifItem>
             </div>
           </Accordion>
         </div>
+
+        <div style={s.item}>
+          <Accordion title="baby goats!!!" titleStyle={s.title} >
+            <div style={s.content}>
+              <GifList data={this.state.goats} />
+            </div>
+          </ Accordion>
+        </div>
+
+        <div style={s.item}>
+          <Accordion title="you are..." titleStyle={s.title} >
+            <div style={s.content}>
+			  <GifItem> 
+                {this.state.translate}
+              </ GifItem>
+              <p>(rad)</p>
+            </div>
+          </Accordion>
+        </div>
+
       </div>
     );
   }

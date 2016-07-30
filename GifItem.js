@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react'
 const GifItem = (props) => {
   return (
     <div>
-      <img src={props.children} />
+      <img src={props.children} style={{width:'100%'}} />
     </div>
   )
 }
