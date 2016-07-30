@@ -2,8 +2,37 @@ import React, { Component } from 'react';
 import Radium from 'radium';
 import Accordion from './Accordion';
 import ArrowIcon from './ArrowIcon';
+import GifList from './GifList';
+require('es6-promise').polyfill();
+require('isomorphic-fetch');
 
 class MyComponent extends Component {
+  
+  constructor() {
+    super()
+    this.state = {
+      trending: []
+    }
+    this.loadTrending = this.loadTrending.bind(this);
+  } 
+ 
+  componentDidMount() {
+    this.loadTrending();
+  }
+
+  loadTrending() {  
+    fetch('//api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC')
+     .then(function(response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      }
+      return response.json();
+     })
+     .then(gifs => {
+       console.log(gifs.data);
+       this.setState({trending: gifs.data})
+    }); 
+  }
 
   titleBar(){
     return(
@@ -44,9 +73,7 @@ class MyComponent extends Component {
         <div style={s.item}>
           <Accordion title={this.titleBar()} titleStyle={s.title} >
             <div style={s.content}>
-              content<br />
-              content<br />
-              content<br />
+              <GifList data={this.state.trending} />
             </div>
           </ Accordion>
         </div>
@@ -65,5 +92,4 @@ class MyComponent extends Component {
     );
   }
 }
-
 export default Radium(MyComponent);

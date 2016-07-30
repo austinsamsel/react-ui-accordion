@@ -20,6 +20,13 @@ class Accordion extends Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState){
+    const newHeight = this.refs.content.clientHeight;
+    if (newHeight !== this.state.wrapHeight){
+      this.setState({ wrapHeight: newHeight });
+    }
+  }
+
   handleClick() {
     if(this.state.open) {
       this.setState({
@@ -126,7 +133,7 @@ class Accordion extends Component {
           <span style={styles.buttonLine2} />
         </button>
         <div className='header' style={[styles.sectionHead, this.props.titleStyle ]} onClick={this.handleClick}>
-          {this.props.title}
+          {this.props.title} - {this.state.wrapHeight}
         </div>
         <div className='contentWrap' style={styles.contentWrap}>
           <div ref='content' style={styles.content}>
