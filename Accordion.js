@@ -67,7 +67,7 @@ class Accordion extends Component {
         margin: 0,
         padding: 0,
         height: '2.5em',
-        width: '14px',
+        width: '1.5rem',
         outline: 0,
         border: 0,
         background: 'none',
@@ -109,7 +109,6 @@ class Accordion extends Component {
         transition: '0.5s',
       },
       sectionHead: {
-        width: '100%',
         cursor: 'pointer',
         whiteSpace: 'nowrap',
         paddingRight: '2.1em',

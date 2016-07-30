@@ -32,8 +32,9 @@ class MyComponent extends Component {
       },
       // the following to be passed to Accordion
       title : {
-        paddingBottom: '0.5rem',
-        fontWeight: '600'
+        padding: '0.5rem',
+        fontWeight: '600',
+        borderBottom: '1px solid #eee'
       },
     } 
 
