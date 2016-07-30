@@ -8,7 +8,7 @@ class MyComponent extends Component {
   titleBar(){
     return(
       <div>
-        My accordion {/* <ArrowIcon />*/}
+        Trending {/* <ArrowIcon />*/}
       </div>
     );
   }
@@ -40,7 +40,7 @@ class MyComponent extends Component {
 
     return (
       <div style={s.wrap}>
-        <h1>React UI Accordion</h1>
+        <h1 style={{color:'mediumpurple'}}>React UI Accordion</h1>
         <div style={s.item}>
           <Accordion title={this.titleBar()} titleStyle={s.title} >
             <div style={s.content}>
