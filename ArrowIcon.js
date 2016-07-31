@@ -43,9 +43,6 @@ class ArrowIcon extends Component {
     let heightSwap = !this.state.open ? '9px' : '14px';
 
     const styles = {
-      section: {
-        display: 'flex',
-      },
       button: {
         position:'relative',
         border: 0,
@@ -84,8 +81,8 @@ class ArrowIcon extends Component {
     }
 
     return (
-      <div className='button' 
-        style={styles.section} 
+      <div className='button'  
+        style={{display: 'flex'}}
         onClick={this.handleClick}
       >
         <button style={styles.button} className='b' >

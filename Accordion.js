@@ -78,7 +78,9 @@ class Accordion extends Component {
            onClick={this.handleClick}
         >
           {this.props.title}
-          <ArrowIcon isOpen={this.state.open} />
+          <div style={{display:'flex'}}>
+            <ArrowIcon isOpen={this.state.open} />
+          </div>
         </div>
         <div className='contentWrap' style={styles.contentWrap}>
           <div ref='content' style={styles.content}>
