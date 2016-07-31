@@ -63,7 +63,7 @@ class Accordion extends Component {
         fontSize: '1.25rem',
         justifyContent: 'space-between',
         whiteSpace: 'nowrap',
-        paddingRight: '2.1em',
+        padding: '0 2.1rem 0 0',
       },
       content: {
         color: '#333',

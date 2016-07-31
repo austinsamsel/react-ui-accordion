@@ -82,7 +82,7 @@ class MyComponent extends Component {
       return response.json();
      })
      .then(gifs => {
-       console.log(gifs); 
+       // console.log(gifs); 
        this.setState({translate: gifs.data.images.original.url})
     }); 
   }
@@ -94,20 +94,11 @@ class MyComponent extends Component {
       </div>
     ); 
   }
-
-  titleBar(){
-    return(
-      <div>
-        Top 3 Trending GIFs {/* <ArrowIcon />*/}
-      </div>
-    );
-  }
  
   render() {
 
     const s = {
       page: {
-        backgroundColor:'antiquewhite',
         background: 'linear-gradient(-30deg, #B3FFAB, #12FFF7)', 
         minHeight:'100vh',
         height:'100%',
@@ -151,11 +142,11 @@ class MyComponent extends Component {
       <div style={s.page}>
         <div style={s.wrap}>
           <h1 style={{color:'#7200ff', fontSize:'2.25rem'}}>React UI Accordion</h1>
-          <p style={s.p}>
+          <p className="about" style={s.p}>
             Demo of an accordion UI component made in React. This uses GIPHY's API to populate each window with content. <a href="https://hightops.co" style={s.link}>Made by High Tops</a>. 
           </p>
           <div style={s.item}>
-            <Accordion title={this.titleBar()} titleStyle={s.title} >
+            <Accordion title="Top 3 Trending GIFs" titleStyle={s.title} >
               <div style={s.content}>
                 <GifList data={this.state.trending} />
                 {this.credit()}
