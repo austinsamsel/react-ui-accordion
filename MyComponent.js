@@ -155,7 +155,7 @@ class MyComponent extends Component {
             Demo of an accordion UI component made in React. This uses GIPHY's API to populate each window with content. <a href="https://hightops.co" style={s.link}>Made by High Tops</a>. 
           </p>
           <div style={s.item}>
-            <Accordion title={this.titleBar()} isOpen={this.state.open} />} titleStyle={s.title} >
+            <Accordion title={this.titleBar()} titleStyle={s.title} >
               <div style={s.content}>
                 <GifList data={this.state.trending} />
                 {this.credit()}

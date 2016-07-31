@@ -9,24 +9,24 @@ class ArrowIcon extends Component {
     this.state = {
       open: props.isOpen
     }
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillReceiveProps(props){
     this.setState({open: props.isOpen});
   }
 
-  handleClick() {
-    if(this.state.open) {
-      this.setState({
-        open: false
-      });
-    } else {
-      this.setState({
-        open: true
-      });
-    }
-  }
+  // handleClick() {
+  //   if(this.state.open) {
+  //     this.setState({
+  //       open: false
+  //     });
+  //   } else {
+  //     this.setState({
+  //       open: true
+  //     });
+  //   }
+  // }
 
   render() {
 
@@ -83,7 +83,7 @@ class ArrowIcon extends Component {
     return (
       <div className='button'  
         style={{display: 'flex'}}
-        onClick={this.handleClick}
+        /* onClick={this.handleClick} */
       >
         <button style={styles.button} className='b' >
           <span style={styles.buttonLine1} className='bl1' />
