@@ -77,7 +77,10 @@ class ArrowIcon extends Component {
     }
 
     return (
-      <div style={styles.section}>
+      <div className='button' 
+        style={styles.section} 
+        onClick={this.handleClick}
+      >
         <button style={styles.button} className='b' >
           <span style={styles.buttonLine1} className='bl1' />
           <span style={styles.buttonLine2} className='bl2' />

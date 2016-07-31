@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
-import Accordion from './ArrowIcon';
+import ArrowIcon from './ArrowIcon';
 
 chai.use(chaiEnzyme());
 
@@ -16,14 +16,14 @@ describe('(Component) Arrow Icon', () => {
     expect(wrapper.type()).to.eql('div');
   });
 
-  it('opens when user clicks on the title bar', () => {
+  it('opens when user clicks on the button', () => {
     wrapperM.setState({ open: false });
-    wrapperM.find('.header').simulate('click');
+    wrapperM.find('.button').simulate('click');
     expect(wrapperM.state('open')).to.equal(true);
   })
 
   it('has a open and close arrow/x button', () => {
-    expect(wrapper.find('button')).to.have.length(1);
+    expect(wrapper.find('.button')).to.have.length(1);
   })
 
   it('should have a button start as an arrow', () => {
@@ -45,10 +45,10 @@ describe('(Component) Arrow Icon', () => {
   });
 
   it('calls the handleClick method when title is pressed', () => {
-    const toggle = sinon.spy(Accordion.prototype, 'handleClick')
-    const wrapper = mount(<Accordion />)
-    wrapper.find('.header').simulate('click');
-    expect(Accordion.prototype.handleClick.calledOnce).to.equal(true);
+    const toggle = sinon.spy(ArrowIcon.prototype, 'handleClick')
+    const wrapper = mount(<ArrowIcon />)
+    wrapper.find('.button').simulate('click');
+    expect(ArrowIcon.prototype.handleClick.calledOnce).to.equal(true);
     toggle.restore();
   });
 
