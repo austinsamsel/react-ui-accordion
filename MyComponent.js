@@ -88,6 +88,14 @@ class MyComponent extends Component {
     }); 
   }
 
+  credit() {
+    return(  
+      <div style={{width:'100%', textAlign:'right', paddingTop:'1rem'}}>
+        <img src="//raw.githubusercontent.com/austinsamsel/react-ui-accordion/master/assets/Poweredby_640px-White_HorizText.png" style={{width:'180px'}} alt="Powered By GIPHY" />
+      </div>
+    ); 
+  }
+
   titleBar(){
     return(
       <div>
@@ -130,8 +138,9 @@ class MyComponent extends Component {
           <Accordion title={this.titleBar()} titleStyle={s.title} >
             <div style={s.content}>
               <GifList data={this.state.trending} />
+              {this.credit()}
             </div>
-          </ Accordion>
+          </Accordion>
         </div>
 
         <div style={s.item}>
@@ -139,7 +148,8 @@ class MyComponent extends Component {
             <div style={s.content}>
 			  <GifItem> 
                 {this.state.random}
-              </ GifItem>
+              </ GifItem> 
+              {this.credit()}
             </div>
           </Accordion>
         </div>
@@ -148,8 +158,9 @@ class MyComponent extends Component {
           <Accordion title="baby goats!!!" titleStyle={s.title} >
             <div style={s.content}>
               <GifList data={this.state.goats} />
+              {this.credit()}
             </div>
-          </ Accordion>
+          </Accordion>
         </div>
 
         <div style={s.item}>
@@ -158,11 +169,11 @@ class MyComponent extends Component {
 			  <GifItem> 
                 {this.state.translate}
               </ GifItem>
-              <p>(rad)</p>
+              <p>... rad.</p>
+              {this.credit()}
             </div>
           </Accordion>
         </div>
-
       </div>
     );
   }
