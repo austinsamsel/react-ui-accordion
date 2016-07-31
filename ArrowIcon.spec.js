@@ -16,12 +16,6 @@ describe('(Component) Arrow Icon', () => {
     expect(wrapper.type()).to.eql('div');
   });
 
-  // it('opens when user clicks on the button', () => {
-  //   wrapperM.setState({ open: false });
-  //   wrapperM.find('.button').simulate('click');
-  //   expect(wrapperM.state('open')).to.equal(true);
-  // })
-
   it('has a open and close arrow/x button', () => {
     expect(wrapper.find('.button')).to.have.length(1);
   })
@@ -43,13 +37,5 @@ describe('(Component) Arrow Icon', () => {
     expect(bl1).to.have.style('height', '14px');
     expect(bl2).to.have.style('transform', 'translate(0%, -50%) rotate(45deg)');
   });
-
-  // it('calls the handleClick method when title is pressed', () => {
-  //   const toggle = sinon.spy(ArrowIcon.prototype, 'handleClick')
-  //   const wrapper = mount(<ArrowIcon />)
-  //   wrapper.find('.button').simulate('click');
-  //   expect(ArrowIcon.prototype.handleClick.calledOnce).to.equal(true);
-  //   toggle.restore();
-  // });
 
 });
