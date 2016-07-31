@@ -20,7 +20,7 @@ class Accordion extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(){
     const newHeight = this.refs.content.clientHeight;
     if (newHeight !== this.state.wrapHeight){
       this.setState({ wrapHeight: newHeight });
@@ -49,9 +49,13 @@ class Accordion extends Component {
 
   render() {
 
-    let rotate1 = !this.state.open ? 'translate(75%, -50%) rotate(45deg)' : 'translate(0%, -50%) rotate(-45deg)';
+    let rotate1 = !this.state.open 
+      ? 'translate(75%, -50%) rotate(45deg)' 
+      : 'translate(0%, -50%) rotate(-45deg)';
 
-    let rotate2 = !this.state.open ? 'translate(-75%, -50%) rotate(-45deg)' : 'translate(0%, -50%) rotate(45deg)';
+    let rotate2 = !this.state.open 
+      ? 'translate(-75%, -50%) rotate(-45deg)' 
+      : 'translate(0%, -50%) rotate(45deg)';
 
     let rotateHeight = !this.state.open ? '2.5em' : '14px';
 
@@ -123,16 +127,15 @@ class Accordion extends Component {
 
     return (
       <div style={styles.section}>
-      {/* <button style={styles.button}>
-          <span style={styles.buttonLine1} />
-          <span style={styles.buttonLine2} />
-        </button> */}
-        <div style={[styles.sectionHead, this.props.titleStyle ]} onClick={this.handleClick}>
+        <div className='header' 
+           style={[styles.sectionHead, this.props.titleStyle ]} 
+           onClick={this.handleClick}
+        >
           {this.props.title}
 
-          <button style={styles.button}>
-            <span style={styles.buttonLine1} />
-            <span style={styles.buttonLine2} />
+          <button style={styles.button} className='b' >
+            <span style={styles.buttonLine1} className='bl1' />
+            <span style={styles.buttonLine2} className='bl2' />
           </button>
         </div>
         <div className='contentWrap' style={styles.contentWrap}>

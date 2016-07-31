@@ -151,7 +151,7 @@ class MyComponent extends Component {
     return (
       <div style={s.page}>
         <div style={s.wrap}>
-          <h1 style={{color:'mediumpurple', fontSize:'2.25rem'}}>React UI Accordion</h1>
+          <h1 style={{color:'#7200ff', fontSize:'2.25rem'}}>React UI Accordion</h1>
           <p style={s.p}>
             Demo of an accordion UI component made in React. This uses GIPHY's API to populate each window with content. <a href="https://hightops.co" style={s.link}>Made by High Tops</a>. 
           </p>
