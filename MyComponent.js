@@ -14,19 +14,19 @@ class MyComponent extends Component {
     this.state = {
       trending: [],
       random: null,
-      goats: [],
+      query: [],
       translate: null,
     }
     this.loadTrending = this.loadTrending.bind(this);
     this.loadRandom = this.loadRandom.bind(this);
-    this.loadGoats = this.loadGoats.bind(this);
+    this.loadQuery = this.loadQuery.bind(this);
     this.loadTranslate = this.loadTranslate.bind(this);
   } 
  
   componentDidMount() {
     this.loadTrending();
     this.loadRandom();
-    this.loadGoats();
+    this.loadQuery();
     this.loadTranslate();
   }
 
@@ -59,8 +59,8 @@ class MyComponent extends Component {
     }); 
   }
 
-  loadGoats() { 
-    fetch('//api.giphy.com/v1/gifs/search?q=baby+goats&api_key=dc6zaTOxFJmzC')
+  loadQuery() { 
+    fetch('//api.giphy.com/v1/gifs/search?q=dolphin&api_key=dc6zaTOxFJmzC')
      .then(function(response) {
       if (response.status >= 400) {
         throw new Error("Bad response from server");
@@ -70,7 +70,7 @@ class MyComponent extends Component {
      .then(gifs => {
        // console.log(gifs);
        const someGifs = gifs.data.slice(1,4);
-       this.setState({goats: someGifs})
+       this.setState({query: someGifs})
     }); 
   }
 
@@ -107,11 +107,22 @@ class MyComponent extends Component {
   render() {
 
     const s = {
+      page: {
+        backgroundColor:'antiquewhite',
+        background: 'linear-gradient(-30deg, #B3FFAB, #12FFF7)', 
+        minHeight:'100vh',
+        height:'100%',
+        display:'flex',
+        justifyContent:'center',
+        alignItems:'center',
+      },
       wrap : {
         fontFamily: '"avenir next", avenir, sans-serif',
         padding: '2rem',
         maxWidth: '600px',
-        margin: '0 auto',
+        margin: '2rem',
+        backgroundColor:'white',
+        borderRadius:'10px',
       },
       item : {
         padding:'0.5rem 0',
@@ -122,6 +133,13 @@ class MyComponent extends Component {
         borderBottom: '1px solid #54e6e6',
         color: '#534f67',
       },
+      p: {
+        color: '#534f67',
+      },
+      link: {
+        color: 'deeppink',
+        textDecoration: 'none',
+      },
       // the following to be passed to Accordion
       title : {
         padding: '0.5rem',
@@ -131,48 +149,52 @@ class MyComponent extends Component {
     } 
 
     return (
-      <div style={s.wrap}>
-        <h1 style={{color:'mediumpurple'}}>React UI Accordion</h1>
+      <div style={s.page}>
+        <div style={s.wrap}>
+          <h1 style={{color:'mediumpurple'}}>React UI Accordion</h1>
+          <p style={s.p}>
+            Demo of an accordion UI component made in React. This uses GIPHY's API to populate each window with content. <a href="https://hightops.co" style={s.link}>Made by High Tops</a>. 
+          </p>
+          <div style={s.item}>
+            <Accordion title={this.titleBar()} titleStyle={s.title} >
+              <div style={s.content}>
+                <GifList data={this.state.trending} />
+                {this.credit()}
+              </div>
+            </Accordion>
+          </div>
 
-        <div style={s.item}>
-          <Accordion title={this.titleBar()} titleStyle={s.title} >
-            <div style={s.content}>
-              <GifList data={this.state.trending} />
-              {this.credit()}
-            </div>
-          </Accordion>
-        </div>
+          <div style={s.item}>
+            <Accordion title="Totally Random GIF" titleStyle={s.title} >
+              <div style={s.content}>
+                <GifItem> 
+                  {this.state.random}
+                </ GifItem> 
+                {this.credit()}
+              </div>
+            </Accordion>
+          </div>
 
-        <div style={s.item}>
-          <Accordion title="Totally Random GIF" titleStyle={s.title} >
-            <div style={s.content}>
-			  <GifItem> 
-                {this.state.random}
-              </ GifItem> 
-              {this.credit()}
-            </div>
-          </Accordion>
-        </div>
+          <div style={s.item}>
+            <Accordion title="Dolphin 🐬  GIFs" titleStyle={s.title} >
+              <div style={s.content}>
+                <GifList data={this.state.query} />
+                {this.credit()}
+              </div>
+            </Accordion>
+          </div>
 
-        <div style={s.item}>
-          <Accordion title="baby goats!!!" titleStyle={s.title} >
-            <div style={s.content}>
-              <GifList data={this.state.goats} />
-              {this.credit()}
-            </div>
-          </Accordion>
-        </div>
-
-        <div style={s.item}>
-          <Accordion title="you are..." titleStyle={s.title} >
-            <div style={s.content}>
-			  <GifItem> 
-                {this.state.translate}
-              </ GifItem>
-              <p>... rad.</p>
-              {this.credit()}
-            </div>
-          </Accordion>
+          <div style={s.item}>
+            <Accordion title="you are..." titleStyle={s.title} >
+              <div style={s.content}>
+                <GifItem> 
+                  {this.state.translate}
+                </ GifItem>
+                <p>... rad.</p>
+                {this.credit()}
+              </div>
+            </Accordion>
+          </div>
         </div>
       </div>
     );

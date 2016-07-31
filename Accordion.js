@@ -67,14 +67,7 @@ class Accordion extends Component {
         width: '100%'
       },
       button: {
-        position: 'absolute',
-        top:'-2px',
-        right: 0,
-        margin: 0,
-        padding: 0,
-        height: '2.5em',
-        width: '1.5rem',
-        outline: 0,
+        position:'relative',
         border: 0,
         background: 'none',
         textIndent: '-9999%',
@@ -115,7 +108,10 @@ class Accordion extends Component {
         transition: '0.5s',
       },
       sectionHead: {
-        cursor: 'pointer',
+        cursor: 'default',
+        display: 'flex',
+        fontSize: '1.25rem',
+        justifyContent: 'space-between',
         whiteSpace: 'nowrap',
         paddingRight: '2.1em',
       },
@@ -127,12 +123,17 @@ class Accordion extends Component {
 
     return (
       <div style={styles.section}>
-        <button style={styles.button}>
+      {/* <button style={styles.button}>
           <span style={styles.buttonLine1} />
           <span style={styles.buttonLine2} />
-        </button>
-        <div className='header' style={[styles.sectionHead, this.props.titleStyle ]} onClick={this.handleClick}>
+        </button> */}
+        <div style={[styles.sectionHead, this.props.titleStyle ]} onClick={this.handleClick}>
           {this.props.title}
+
+          <button style={styles.button}>
+            <span style={styles.buttonLine1} />
+            <span style={styles.buttonLine2} />
+          </button>
         </div>
         <div className='contentWrap' style={styles.contentWrap}>
           <div ref='content' style={styles.content}>
