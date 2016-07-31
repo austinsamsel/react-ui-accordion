@@ -47,26 +47,8 @@ describe('(Component) Accordion', () => {
   })
 
   it('has a open and close arrow/x button', () => {
-    expect(wrapper.find('button')).to.have.length(1);
+    expect(wrapper.find('ArrowIcon')).to.have.length(1);
   })
-
-  it('should have a button start as an arrow', () => {
-    wrapperM.setState({'open': false});
-    const bl1 = wrapperM.find('.bl1');
-    const bl2 = wrapperM.find('.bl2');
-    expect(bl1).to.have.style('transform', 'translate(75%, -50%) rotate(45deg)');
-    expect(bl1).to.have.style('height', '9px');
-    expect(bl2).to.have.style('transform', 'translate(-75%, -50%) rotate(-45deg)');
-  });
-
-  it('should form an X when content is expanded', () => { 
-    wrapperM.setState({'open': true});
-    const bl1 = wrapperM.find('.bl1');
-    const bl2 = wrapperM.find('.bl2');
-    expect(bl1).to.have.style('transform', 'translate(0%, -50%) rotate(-45deg)');
-    expect(bl1).to.have.style('height', '14px');
-    expect(bl2).to.have.style('transform', 'translate(0%, -50%) rotate(45deg)');
-  });
 
   it('calls the handleClick method when title is pressed', () => {
     const toggle = sinon.spy(Accordion.prototype, 'handleClick')

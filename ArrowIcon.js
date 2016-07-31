@@ -3,13 +3,17 @@ import Radium from 'radium'
 
 class ArrowIcon extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      open: false
+      open: props.isOpen
     }
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentWillReceiveProps(props){
+    this.setState({open: props.isOpen});
   }
 
   handleClick() {
@@ -39,12 +43,15 @@ class ArrowIcon extends Component {
     let heightSwap = !this.state.open ? '9px' : '14px';
 
     const styles = {
+      section: {
+        display: 'flex',
+      },
       button: {
         position:'relative',
         border: 0,
         background: 'none',
         textIndent: '-9999%',
-        pointerEvents: 'none'
+        pointerEvents: 'none',
       },
       buttonLine1: {
         content: '',
