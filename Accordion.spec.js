@@ -5,16 +5,10 @@ import chaiEnzyme from 'chai-enzyme';
 import sinon from 'sinon';
 import Accordion from './Accordion';
 
-chai.use(chaiEnzyme())
+chai.use(chaiEnzyme());
 
-describe('the environment', () => {
-  it('works, hopefully', () => {
-    expect(true).to.be.true;
-  });
-});
-
-// Refactored tests
 describe('(Component) Accordion', () => {
+
   const wrapper = shallow(<Accordion />); 
   const wrapperM = mount(<Accordion />);
 
@@ -41,9 +35,10 @@ describe('(Component) Accordion', () => {
   });
 
   it('opens when user clicks on the title bar', () => {
-    wrapperM.setState({ open: false });
-    wrapperM.find('.header').simulate('click');
-    expect(wrapperM.state('open')).to.equal(true);
+    const wrapper = mount(<Accordion />);
+    wrapper.setState({ open: false });
+    wrapper.find('.header').simulate('click');
+    expect(wrapper.state('open')).to.equal(true);
   })
 
   it('has a open and close arrow/x button', () => {
@@ -66,11 +61,12 @@ describe('(Component) Accordion', () => {
     expect(wrapper.state('open')).to.equal(false);
   });
 
-  it('should expand in height when opened', () => {
-    wrapperM.setState({'open': false});
-    const content = wrapperM.find('.contentWrap');
+  it('should expand in height when opened', () => {    
+    const wrapper = mount(<Accordion />);
+    wrapper.setState({'open': false});
+    const content = wrapper.find('.contentWrap');
     expect(content).to.have.style('maxHeight','0px');
-    wrapperM.setState({'open': true});
+    wrapper.setState({'open': true});
     expect(content).to.not.have.style('maxHeight','0px');
   });
 
