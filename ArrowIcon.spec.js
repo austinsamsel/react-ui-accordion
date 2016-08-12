@@ -7,7 +7,6 @@ import ArrowIcon from './ArrowIcon';
 
 chai.use(chaiEnzyme());
 
-// Refactored tests
 describe('(Component) Arrow Icon', () => {
   const wrapper = shallow(<ArrowIcon />); 
   const wrapperM = mount(<ArrowIcon />);

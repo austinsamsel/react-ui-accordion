@@ -7,10 +7,8 @@ import MyComponent from './MyComponent';
 
 chai.use(chaiEnzyme())
 
-// Refactored tests
 describe('(Component) MyComponent', () => {
   const wrapper = shallow(<MyComponent />); 
-  const wrapperM = mount(<MyComponent />);
 
   it('calls componentDidMount()', () => {
     const method = sinon.spy(MyComponent.prototype, 'componentDidMount');

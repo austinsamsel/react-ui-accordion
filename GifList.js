@@ -9,7 +9,7 @@ const GifList = (props) => {
         {gif.images.original.url}
       </GifItem>
     )
-  })
+  });
 
   return (
     <div>

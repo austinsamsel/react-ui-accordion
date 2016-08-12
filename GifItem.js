@@ -10,7 +10,7 @@ const GifItem = (props) => {
 }
 
 GifItem.propTypes = {
-  children: PropTypes.string
+  // children: PropTypes.string.isRequired
 }
 
 export default GifItem

@@ -38,8 +38,9 @@ class MyComponent extends Component {
       return response.json();
      })
      .then(gifs => {
-       // console.log(gifs.data);
+      // console.log(gifs.data);
        const someGifs = gifs.data.slice(1,4);
+       console.log(somegifs);
        this.setState({trending: someGifs})
     }); 
   }
@@ -143,7 +144,7 @@ class MyComponent extends Component {
         <div style={s.wrap}>
           <h1 style={{color:'#7200ff', fontSize:'2.25rem'}}>React UI Accordion</h1>
           <p className="about" style={s.p}>
-            Demo of an accordion UI component made in React. This uses GIPHY's API to populate each window with content. <a href="https://hightops.co" style={s.link}>Made by High Tops</a>. 
+            Demo of an accordion UI component made in React. This uses the GIPHY API to populate each window with content. <a href="https://hightops.co" style={s.link}>Made by High Tops</a>. 
           </p>
           <div style={s.item}>
             <Accordion title="Top 3 Trending GIFs" titleStyle={s.title} >
