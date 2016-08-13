@@ -40,7 +40,6 @@ class MyComponent extends Component {
      .then(gifs => {
       // console.log(gifs.data);
        const someGifs = gifs.data.slice(1,4);
-       console.log(somegifs);
        this.setState({trending: someGifs})
     }); 
   }

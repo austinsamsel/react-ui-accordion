@@ -18,7 +18,7 @@ const GifList = (props) => {
   )
 }
 
-GifList.propTypes = {
+GifList.PropTypes = {
   data: PropTypes.array.isRequired
 }
 
