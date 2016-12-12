@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Radium from 'radium';
-import ArrowIcon from './ArrowIcon';
+import ArrowIcon from '../arrow/ArrowIcon';
 
 class Accordion extends Component {
 
@@ -16,8 +16,8 @@ class Accordion extends Component {
 
   componentDidMount(){
     const contentHeight = this.refs.content.clientHeight;
-    this.setState({ 
-      wrapHeight: contentHeight 
+    this.setState({
+      wrapHeight: contentHeight
     });
   }
 
@@ -43,7 +43,7 @@ class Accordion extends Component {
   render() {
 
     let wrapSize = !this.state.open ? '0px' : this.state.wrapHeight;
- 
+
     let opacity = !this.state.open ? '0.0' : '1.0';
 
     const styles = {
@@ -73,8 +73,8 @@ class Accordion extends Component {
 
     return (
       <div style={styles.section}>
-        <div className='header' 
-           style={[styles.sectionHead, this.props.titleStyle ]} 
+        <div className='header'
+           style={[styles.sectionHead, this.props.titleStyle ]}
            onClick={this.handleClick}
         >
           {this.props.title}

@@ -23,7 +23,8 @@
     "sinon": "^1.17.4"
   },
   "scripts": {
-    "test": "mocha --require setup.js *.spec.js",
-    "test-watch": "mocha --watch --require setup.js *.spec.js"
+    "test": "mocha --require setup.js **/*.spec.js",
+    "test-watch": "mocha --watch --require setup.js **/*.spec.js",
+    "dev": "quik"
   }
 }

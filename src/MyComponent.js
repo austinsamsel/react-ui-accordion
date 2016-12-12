@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Radium from 'radium';
-import Accordion from './Accordion';
-import GifList from './GifList';
-import GifItem from './GifItem';
+import Accordion from './accordion/Accordion';
+import GifList from './gifList/GifList';
+import GifItem from './gifList/GifItem';
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
 class MyComponent extends Component {
-  
+
   constructor() {
     super()
     this.state = {
@@ -20,8 +20,8 @@ class MyComponent extends Component {
     this.loadRandom = this.loadRandom.bind(this);
     this.loadQuery = this.loadQuery.bind(this);
     this.loadTranslate = this.loadTranslate.bind(this);
-  } 
- 
+  }
+
   componentDidMount() {
     this.loadTrending();
     this.loadRandom();
@@ -29,7 +29,7 @@ class MyComponent extends Component {
     this.loadTranslate();
   }
 
-  loadTrending() {  
+  loadTrending() {
     fetch('//api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC')
      .then(function(response) {
       if (response.status >= 400) {
@@ -41,10 +41,10 @@ class MyComponent extends Component {
       // console.log(gifs.data);
        const someGifs = gifs.data.slice(1,4);
        this.setState({trending: someGifs})
-    }); 
+    });
   }
 
-  loadRandom() { 
+  loadRandom() {
     fetch('//api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag')
      .then(function(response) {
       if (response.status >= 400) {
@@ -55,10 +55,10 @@ class MyComponent extends Component {
      .then(gifs => {
        // console.log(gifs);
        this.setState({random: gifs.data.image_original_url})
-    }); 
+    });
   }
 
-  loadQuery() { 
+  loadQuery() {
     fetch('//api.giphy.com/v1/gifs/search?q=dolphin&api_key=dc6zaTOxFJmzC')
      .then(function(response) {
       if (response.status >= 400) {
@@ -70,10 +70,10 @@ class MyComponent extends Component {
        // console.log(gifs);
        const someGifs = gifs.data.slice(1,4);
        this.setState({query: someGifs})
-    }); 
+    });
   }
 
-  loadTranslate() { 
+  loadTranslate() {
     fetch('//api.giphy.com/v1/gifs/translate?s=rad&api_key=dc6zaTOxFJmzC')
      .then(function(response) {
       if (response.status >= 400) {
@@ -82,24 +82,24 @@ class MyComponent extends Component {
       return response.json();
      })
      .then(gifs => {
-       // console.log(gifs); 
+       // console.log(gifs);
        this.setState({translate: gifs.data.images.original.url})
-    }); 
+    });
   }
 
   credit() {
-    return(  
+    return(
       <div style={{width:'100%', textAlign:'right', paddingTop:'1rem'}}>
         <img src="//raw.githubusercontent.com/austinsamsel/react-ui-accordion/master/assets/Poweredby_640px-White_HorizText.png" style={{width:'180px'}} alt="Powered By GIPHY" />
       </div>
-    ); 
+    );
   }
- 
+
   render() {
 
     const s = {
       page: {
-        background: 'linear-gradient(-30deg, #B3FFAB, #12FFF7)', 
+        background: 'linear-gradient(-30deg, #B3FFAB, #12FFF7)',
         minHeight:'100vh',
         height:'100%',
         display:'flex',
@@ -136,14 +136,14 @@ class MyComponent extends Component {
         fontWeight: '600',
         borderBottom: '1px solid #eee'
       },
-    } 
+    }
 
     return (
       <div style={s.page}>
         <div style={s.wrap}>
           <h1 style={{color:'#7200ff', fontSize:'2.25rem'}}>React UI Accordion</h1>
           <p className="about" style={s.p}>
-            Demo of an accordion UI component made in React. This uses the GIPHY API to populate each window with content. <a href="https://hightops.co" style={s.link}>Made by High Tops</a>. 
+            Demo of an accordion UI component made in React. This uses the GIPHY API to populate each window with content. <a href="https://hightops.co" style={s.link}>Made by High Tops</a>.
           </p>
           <div style={s.item}>
             <Accordion title="Top 3 Trending GIFs" titleStyle={s.title} >
@@ -157,9 +157,9 @@ class MyComponent extends Component {
           <div style={s.item}>
             <Accordion title="Totally Random GIF" titleStyle={s.title} >
               <div style={s.content}>
-                <GifItem> 
+                <GifItem>
                   {this.state.random}
-                </ GifItem> 
+                </ GifItem>
                 {this.credit()}
               </div>
             </Accordion>
@@ -177,7 +177,7 @@ class MyComponent extends Component {
           <div style={s.item}>
             <Accordion title="you are..." titleStyle={s.title} >
               <div style={s.content}>
-                <GifItem> 
+                <GifItem>
                   {this.state.translate}
                 </ GifItem>
                 <p>... rad.</p>
